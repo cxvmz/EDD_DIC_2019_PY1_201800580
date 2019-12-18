@@ -44,6 +44,7 @@ public:
     void quitar_de(int index); //Este es el Remove_at pero le quise cambien nombre xd
     void imprimirLDE();
     T obtener_Elemento_En(int index);
+    Nodo *getPrimero(){return *primero;}
 private:
     bool estaVacia(){return size==0;}
     int size;

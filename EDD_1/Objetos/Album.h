@@ -77,6 +77,9 @@ int Album::getMonthNumero()
     else if(this->month=="Diciembre"){
         return 12;
     }
+    else if(this->month=="F"){
+        return -1;
+    }
     else{
         return 0;
     }

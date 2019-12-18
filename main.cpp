@@ -14,6 +14,8 @@
 #include <QJsonArray>
 #include <fstream>
 #include <qdebug.h>
+
+
 void AbrirArchivoLibraryJson(QString filen){
     QFile file;
     QStringList nombre;
@@ -75,7 +77,7 @@ void AbrirArchivoLibraryJson(QString filen){
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-    AbrirArchivoLibraryJson("C:/Users/Christian/Desktop/Library.json");
+    //AbrirArchivoLibraryJson("C:/Users/Christian/Desktop/Library.json");
     return a.exec();
 }
 

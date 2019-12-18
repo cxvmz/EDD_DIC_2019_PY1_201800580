@@ -24,6 +24,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     EDD_1/Cola.h \
+    EDD_1/CuboD.h \
     EDD_1/LDE.h \
     EDD_1/LDEC.h \
     EDD_1/LS.h \
