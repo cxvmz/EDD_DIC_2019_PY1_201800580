@@ -11,14 +11,14 @@ public:
         this->file=file;
         this->rating=rating;
     }
-    QString getName() const;
-    void setName(const QString &value);
+    QString getName(){return name;}
+    void setName(QString value){name = value;}
 
-    QString getFile() const;
-    void setFile(const QString &value);
+    QString getFile(){return file;}
+    void setFile( QString value){file = value;}
 
-    double getRating() const;
-    void setRating(double value);
+    double getRating(){return rating;}
+    void setRating(double value){rating = value;}
 
 private:
     QString name;
@@ -27,33 +27,3 @@ private:
 };
 
 #endif // SONG_H
-
-QString Song::getName() const
-{
-return name;
-}
-
-void Song::setName(const QString &value)
-{
-name = value;
-}
-
-QString Song::getFile() const
-{
-return file;
-}
-
-void Song::setFile(const QString &value)
-{
-file = value;
-}
-
-double Song::getRating() const
-{
-return rating;
-}
-
-void Song::setRating(double value)
-{
-rating = value;
-}

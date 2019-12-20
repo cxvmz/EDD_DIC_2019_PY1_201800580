@@ -28,7 +28,6 @@ HEADERS += \
     EDD_1/LDE.h \
     EDD_1/LDEC.h \
     EDD_1/LS.h \
-    EDD_1/MartizD.h \
     EDD_1/Objetos/Album.h \
     EDD_1/Objetos/Artist.h \
     EDD_1/Objetos/Song.h \

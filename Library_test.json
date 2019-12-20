@@ -1,0 +1,465 @@
+{
+	"Library":[
+		{
+		  "Artist" : {
+			"Name": "The Devil Wears Prada",
+			"Albums": [
+			  {
+				"Name":"The Act",
+				"Month": "Octubre",
+				"Year": "2019",
+				"Songs": [
+				   {
+					"Name": "Switchblade",
+					"File": "c.mp3",
+					"Rating": "6.5"
+				  }
+				  ,
+				  {
+					"Name": "Lines Of Your Hands",
+					"File": "c.mp3",
+					"Rating": "6.5"
+				  }
+				  ,
+				  {
+					"Name": "Chemical",
+					"File": "c.mp3",
+					"Rating": "6.5"
+				  }
+				  ,
+				  {
+					"Name": "Wave Of Youth",
+					"File": "c.mp3",
+					"Rating": "6.5"
+				  } 
+				]
+			  }
+			  ,
+			  {
+				"Name":"Dear Love: A Beautiful Discord",
+				"Month": "Agosto",
+				"Year": "2006",
+				"Songs": [
+				   {
+					"Name": "Dogs Can Grow Beards All Over",
+					"File": "c.mp3",
+					"Rating": "2.5"
+				  }
+				  ,
+				  {
+					"Name": "Texas Is South",
+					"File": "c.mp3",
+					"Rating": "2.5"
+				  }
+				  ,
+				  {
+					"Name": "Modeify the Pronunciation",
+					"File": "c.mp3",
+					"Rating": "2.5"
+				  }
+				  ,
+				  {
+					"Name": "Salvation",
+					"File": "c.mp3",
+					"Rating": "2.5"
+				  } 
+				]
+			  }
+			  ,
+			  {
+				"Name":"Dead Throne",
+				"Month": "Septiembre",
+				"Year": "2013",
+				"Songs": [
+				   {
+					"Name": "Mammoth",
+					"File": "c.mp3",
+					"Rating": "7.5"
+				  }
+				  ,
+				  {
+					"Name": "Texas Is South",
+					"File": "c.mp3",
+					"Rating": "7.5"
+				  }
+				  ,
+				  {
+					"Name": "My Questions",
+					"File": "c.mp3",
+					"Rating": "7.5"
+				  }
+				  ,
+				  {
+					"Name": "Born To Lose",
+					"File": "c.mp3",
+					"Rating": "7.5"
+				  } 
+				]
+			  }
+			]
+		  }
+	}
+	,
+		{
+		  "Artist" : {
+			"Name": "Bring Me The Horizon",
+			"Albums": [
+			  {
+				"Name":"Sempiternal",
+				"Month": "Abril",
+				"Year": "2013",
+				"Songs": [
+				  {
+					"Name": "Can You Feel My Heart",
+					"File": "c.mp3",
+					"Rating": "2.0"
+				  }
+				  ,
+				  {
+					"Name": "The House of Wolves",
+					"File": "c.mp3",
+					"Rating": "2.0"
+				  }
+				  ,
+				  {
+					"Name": "Sleepwalking",
+					"File": "c.mp3",
+					"Rating": "2.0"
+				  }
+				  ,
+				  {
+					"Name": "Go To Hell For Heaven's Sake",
+					"File": "c.mp3",
+					"Rating": "2.0"
+				  }
+				]
+			  }
+			  ,
+			  {
+				"Name":"That's the Spirit",
+				"Month": "Septiembre",
+				"Year": "2015",
+				"Songs": [
+				  {
+					"Name": "Happy Song",
+					"File": "c.mp3",
+					"Rating": "2.5"
+				  }
+				  ,
+				  {
+					"Name": "True Friends",
+					"File": "c.mp3",
+					"Rating": "2.5"
+				  }
+				  ,
+				  {
+					"Name": "Follow You",
+					"File": "c.mp3",
+					"Rating": "2.5"
+				  }
+				  ,
+				  {
+					"Name": "Drown",
+					"File": "c.mp3",
+					"Rating": "2.5"
+				  }
+				]
+			  }
+			  ,
+			  {
+				"Name":"Amo",
+				"Month": "Enero",
+				"Year": "2019",
+				"Songs": [
+				  {
+					"Name": "Mantra",
+					"File": "c.mp3",
+					"Rating": "2.6"
+				  }
+				  ,
+				  {
+					"Name": "Sugar, Honey, Ice And Tea",
+					"File": "c.mp3",
+					"Rating": "2.6"
+				  }
+				  ,
+				  {
+					"Name": "Medicine",
+					"File": "c.mp3",
+					"Rating": "2.6"
+				  }
+				  ,
+				  {
+					"Name": "Heavy Metal",
+					"File": "c.mp3",
+					"Rating": "2.6"
+				  }
+				]
+			  }
+			]
+		  }
+		}
+		,
+	{
+      "Artist" : {
+        "Name": "The Almost",
+        "Albums":[
+          {
+            "Name":"Southern Weather",
+            "Month": "Abril",
+            "Year": "2007",
+            "Songs": [
+               {
+                "Name": "Say This Sooner",
+                "File": "c.mp3",
+                "Rating": "3.0"
+              }
+              ,
+              {
+                "Name": "Southern Weather",
+                "File": "c.mp3",
+                "Rating": "3.0"
+              }
+              ,
+              {
+                "Name": "Everyone Here Smells Like a Rat",
+                "File": "c.mp3",
+                "Rating": "3.0"
+              }
+              ,
+              {
+                "Name": "Call Back When I'm Honest",
+                "File": "c.mp3",
+                "Rating": "3.0"
+              } 
+            ]
+          }
+          ,
+          {
+            "Name":"Monster Monster",
+            "Month": "Noviembre",
+            "Year": "2009",
+            "Songs": [
+               {
+                "Name": "Monster Monster",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              }
+              ,
+              {
+                "Name": "Summer Summer",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              }
+              ,
+              {
+                "Name": "Books & Books",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              }
+              ,
+              {
+                "Name": "Young Again",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              } 
+            ]
+          }
+          ,
+          {
+            "Name":"Fear Inside Our Bones",
+            "Month": "Junio",
+            "Year": "2013",
+            "Songs": [
+               {
+                "Name": "Ghost",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              }
+              ,
+              {
+                "Name": "Never Be Like You",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              }
+              ,
+              {
+                "Name": "I Won't Let Go",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              }
+              ,
+              {
+                "Name": "Lonely Boy",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              } 
+            ]
+          }
+          ,
+          {
+            "Name": "Fear Caller",
+            "Month": "Octubre",
+            "Year": "2019",
+            "Songs": [
+               {
+                "Name": "Chokehold",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              }
+              ,
+              {
+                "Name": "Fire",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              }
+              ,
+              {
+                "Name": "Fire",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              }
+              ,
+              {
+                "Name": "Tame a Lion",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              } 
+            ]
+          }
+        ]
+      }
+    }
+	,
+	{
+      "Artist" : {
+        "Name": "NF",
+        "Albums":[
+          {
+            "Name":"The Search",
+            "Month": "Julio",
+            "Year": "2019",
+            "Songs": [
+               {
+                "Name": "The Search",
+                "File": "c.mp3",
+                "Rating": "7.0"
+              }
+              ,
+              {
+                "Name": "My Stress",
+                "File": "c.mp3",
+                "Rating": "7.0"
+              }
+              ,
+              {
+                "Name": "Time",
+                "File": "c.mp3",
+                "Rating": "7.0"
+              }
+              ,
+              {
+                "Name": "I Miss the Days",
+                "File": "c.mp3",
+                "Rating": "7.0"
+              } 
+            ]
+          }
+          ,
+          {
+            "Name":"Therapy Session",
+            "Month": "Abril",
+            "Year": "2016",
+            "Songs": [
+               {
+                "Name": "Therapy Session",
+                "File": "c.mp3",
+                "Rating": "8.0"
+              }
+              ,
+              {
+                "Name": "How Could You Leave Us",
+                "File": "c.mp3",
+                "Rating": "8.0"
+              }
+              ,
+              {
+                "Name": "Got You on My Mind",
+                "File": "c.mp3",
+                "Rating": "8.0"
+              }
+              ,
+              {
+                "Name": "Wish You Wouldn't",
+                "File": "c.mp3",
+                "Rating": "8.0"
+              } 
+            ]
+          }
+          ,
+          {
+            "Name":"Mansion",
+            "Month": "Marzo",
+            "Year": "2015",
+            "Songs": [
+               {
+                "Name": "Mansion",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              }
+              ,
+              {
+                "Name": "All I Have",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              }
+              ,
+              {
+                "Name": "Wake Up",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              }
+              ,
+              {
+                "Name": "Turn the Music Up",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              } 
+            ]
+          }
+          ,
+          {
+            "Name":"Perception",
+            "Month": "Octubre",
+            "Year": "2017",
+            "Songs": [
+               {
+                "Name": "Outcast",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              }
+              ,
+              {
+                "Name": "Let You Down",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              }
+              ,
+              {
+                "Name": "Destiny",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              }
+              ,
+              {
+                "Name": "3 A.M.",
+                "File": "c.mp3",
+                "Rating": "4.0"
+              } 
+            ]
+          }
+        ]
+      }
+    }
+	]
+}
