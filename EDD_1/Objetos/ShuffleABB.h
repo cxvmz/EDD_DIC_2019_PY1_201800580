@@ -1,17 +1,19 @@
-#ifndef LDE_H
-#define LDE_H
-
+#ifndef SHUFFLE_H
+#define SHUFFLE_H
+#include<stdlib.h>
+#include<fstream>
 #include <iostream>
-#include "EDD_1/Objetos/Artist.h"
+#include<QDebug>
+#include "EDD_1/Objetos/SongsPL.h"
 using namespace std;
 
 
-class ListaDoblementeEnlazada
+class SuffleABB
 {
     class Nodo{
 
     public:
-        Nodo(Artist *x){
+        Nodo(SongPL *x){
             siguiente=0;
             anterior=0;
             dato = x;
@@ -21,17 +23,17 @@ class ListaDoblementeEnlazada
         Nodo *getAnterior(){return  anterior;}
         void setSiguiente(Nodo *n){siguiente=n;}
         void setAnterior(Nodo *n){anterior=n;}
-        Artist *getDato(){return dato;}
-        void setDato(Artist *value){dato = value;}
+        SongPL *getDato(){return dato;}
+        void setDato(SongPL *value){dato = value;}
 
     private:
         Nodo *siguiente;
         Nodo *anterior;
-        Artist *dato;
+        SongPL *dato;
     };
 
 public:
-    ListaDoblementeEnlazada(){
+    SuffleABB(){
         primero = 0;
         ultimo=0;
         size=0; // para que la primera posicion sea 0
@@ -40,7 +42,7 @@ public:
     //METODOS DE LA LISTA
 
     int getsize(){return  size;}
-    void agregar_primero(Artist *dato){
+    void agregar_primero(SongPL *dato){
         Nodo *n = new Nodo(dato);
         if(this->estaVacia())
         {
@@ -55,7 +57,7 @@ public:
             this->size++;
         }
     }
-    void agregar_ultimo(Artist *dato){
+    void agregar_ultimo(SongPL *dato){
         Nodo *n = new Nodo(dato);
         if(this->estaVacia())
         {
@@ -69,7 +71,7 @@ public:
         }
 
     }
-    void agregar_en(Artist *dato, int index){
+    void agregar_en(SongPL *dato, int index){
         if(index>=0 && index<=this->size)
         {
             if(index==0){this->agregar_primero(dato);return;}
@@ -124,55 +126,53 @@ public:
                 }
             }
         }
-    } //Este es el Remove_at pero le quise cambien nombre xd
-    void imprimirLDE(){
-        Nodo *aux = primero;
-        qDebug()<< aux->getDato()->getName();
-        while (aux!=ultimo) {
-            aux = aux->getSiguiente();
-            qDebug()<< aux->getDato()->getName();
-        }
     }
-    Artist obtener_Elemento_En(int index){if(index >=0 && index >size){
+    SongPL *obtener_Elemento_En(int index){
+        if(index >=0 && index >size){
             Nodo *temp = this->primero;
             int  recorrido =0;
             while (temp!=0)
             {
-                if(index==recorrido){return *temp->getDato();}
+                if(index==recorrido){return temp->getDato();}
                 temp = temp->getSiguiente();
                 recorrido++;
             }
-        }}
-    void OrdenarLDE_A_Z(){
-        Nodo *aux1,*aux2;
-        aux1=this->primero;
-        Artist *temporal;
-        while (aux1->getSiguiente()!=0) {
-            aux2=aux1->getSiguiente();
-            while (aux2!=0) {
-                if(aux2->getDato()->getName() < aux1->getDato()->getName()){
-                    temporal = aux1->getDato();
-                    aux1->setDato(aux2->getDato());
-                    aux2->setDato(temporal);
-                }
-                aux2=aux2->getSiguiente();
-            }
-            aux1=aux1->getSiguiente();
+        }else{
+            return 0;
         }
+        return 0;
     }
-    QString graficar(){
+
+
+    QString graficar(QString asd){
         QString codigoG="";
-        codigoG += "digraph Pila { \n   node [shape = record]\n graph [nodesep = 1]";
+        codigoG += "digraph Shuffle { \n   node [shape = record]\n graph [nodesep = 1]";
         Nodo *n = this->primero;
-        codigoG += " \" " +n->getDato()->getName()+" \" ";
+        codigoG += " \" " +n->getDato()->getArtist()+"-"+n->getDato()->getSong()+" \" ";
         n=n->getSiguiente();
         while (n!=0) {
-            codigoG+=" -> \" " +n->getDato()->getName()+" \" " ;
+            codigoG+=" -> \" " +n->getDato()->getArtist()+"-"+n->getDato()->getSong()+" \" " ;
             n=n->getSiguiente();
         }
+        Nodo *repro = this->primero;
+        if(asd=="S"){
+            reproducirIndex++;
+        }else if(asd=="A"){
+            reproducirIndex--;
+        }
+        while (reproducirIndex>-1) {
+            if(this->count == this->reproducirIndex){
+        codigoG+= " \" " +repro->getDato()->getArtist()+"-"+repro->getDato()->getSong()+" \" ";
+        codigoG+="[fillcolor=\"red\", style=\"filled\"];\n";
+            }
+            count++;
+            repro=repro->getSiguiente();
+        }
         codigoG+="}";
+        this->count=0;
         return  codigoG;
     }
+
     void generarTxt(QString txt){
         ofstream suffle;
         suffle.open("C:/Users/Christian/Documents/Proyecto1/EDD_Proyecto1_201800580/suffle.txt",ios::out);
@@ -187,16 +187,29 @@ public:
         system("start C:/Users/Christian/Documents/Proyecto1/EDD_Proyecto1_201800580/suffle.pdf");
     }
 
+    void ReproducirShuffle(QString x){
+
+                generarTxt(graficar(x));
+    }
 
 
-
-private:
+    void imprimirSuffleABB(){
+        Nodo *n = this->primero;
+        qDebug()<<" \" " <<n->getDato()->getArtist()<<"-"<<n->getDato()->getSong()<<" \" ";
+        n=n->getSiguiente();
+        while (n!=0) {
+qDebug()<<" \" " <<n->getDato()->getArtist()<<"-"<<n->getDato()->getSong()<<" \" ";            n=n->getSiguiente();
+        }
+    }
+    int reproducirIndex=0;
     bool estaVacia(){return size==0;}
     int size;
+            int count = 0;
+private:
+
     Nodo *primero;
     Nodo *ultimo;
 };
 
 
-#endif // LDE_H
-
+#endif // SHUFFLE_H

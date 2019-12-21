@@ -23,12 +23,20 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    EDD_1/Cola.h \
     EDD_1/CuboD.h \
     EDD_1/LDE.h \
-    EDD_1/LDEC.h \
     EDD_1/LS.h \
+    EDD_1/Objetos/ABB.h \
     EDD_1/Objetos/Album.h \
     EDD_1/Objetos/Artist.h \
+    EDD_1/Objetos/CircularABB.h \
+    EDD_1/Objetos/ColaABB.h \
+    EDD_1/Objetos/PilaABB.h \
+    EDD_1/Objetos/Playlist.h \
+    EDD_1/Objetos/ShuffleABB.h \
     EDD_1/Objetos/Song.h \
-    EDD_1/Pila.h
+    EDD_1/Objetos/SongsPL.h \
+    EDD_1/Objetos/TDAPL/Circular.h \
+    EDD_1/Objetos/TDAPL/Cola.h \
+    EDD_1/Objetos/TDAPL/PilaABB.h \
+    EDD_1/Objetos/TDAPL/Shuffle.h
