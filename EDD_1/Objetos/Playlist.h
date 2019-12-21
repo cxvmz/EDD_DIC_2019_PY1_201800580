@@ -24,9 +24,9 @@ public:
     void setShuffle(SuffleABB *value);
 
     void setCircular(CircularABB *value);
-
-private:
     QString nombre;
+private:
+
     QString tipo;
 PilaABB *pila;
 ColaABB *cola;

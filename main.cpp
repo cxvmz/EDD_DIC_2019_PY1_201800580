@@ -262,6 +262,7 @@ int main(int argc, char *argv[])
         qDebug()<<"3. Elegir Artista";
         qDebug()<<"4. Top 5 Artista";
         qDebug()<<"5. Ingresar Archivo Playlist";
+        qDebug()<<"6. No se si servira pero hice los recorridos xd";
         string o1;
         cin>>o1;
         if(o1=="1")
@@ -317,6 +318,11 @@ int main(int argc, char *argv[])
             } catch(int i) {
                 qDebug()<<"F F F"<<i;
             }
+                }
+        else if(o1=="6"){
+            abb.enorden(abb.raiz);
+            abb.pre(abb.raiz);
+            abb.post(abb.raiz);
                 }
 
     }

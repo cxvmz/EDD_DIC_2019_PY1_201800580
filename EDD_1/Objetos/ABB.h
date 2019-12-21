@@ -1,6 +1,7 @@
 #ifndef ABB_H
 #define ABB_H
 #include "Playlist.h"
+#include<QDebug>
 class NodoABB
 {
 public:
@@ -45,14 +46,31 @@ public:
         if (tmp!=0)
         {
             enorden(tmp->izq);
-            std::cout << tmp->val << " ";
+            qDebug()<<tmp->pl->nombre << "  ";
             enorden(tmp->der);
         }
     }
 
-
-private:
+    void pre(NodoABB* tmp)
+    {
+        if (tmp!=0)
+        {
+            qDebug()<<tmp->pl->nombre << "  ";
+            pre(tmp->izq);
+            pre(tmp->der);
+        }
+    }
+    void post(NodoABB* tmp)
+    {
+        if (tmp!=0)
+        {
+            post(tmp->izq);
+            post(tmp->der);
+            qDebug()<<tmp->pl->nombre << "  ";
+        }
+    }
     NodoABB*raiz;
+
 
 };
 
