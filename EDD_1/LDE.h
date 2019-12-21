@@ -126,14 +126,16 @@ public:
         }
     } //Este es el Remove_at pero le quise cambien nombre xd
     void imprimirLDE(){
+        int numero = 1;
         Nodo *aux = primero;
-        qDebug()<< aux->getDato()->getName();
+        qDebug()<<numero<<"  " <<aux->getDato()->getName();
         while (aux!=ultimo) {
             aux = aux->getSiguiente();
-            qDebug()<< aux->getDato()->getName();
+            numero ++;
+            qDebug()<<numero<<"  " <<aux->getDato()->getName();
         }
     }
-    Artist obtener_Elemento_En(int index){if(index >=0 && index >size){
+    Artist obtener_Elemento_En(int index){if(index >=0 && index <size){
             Nodo *temp = this->primero;
             int  recorrido =0;
             while (temp!=0)
@@ -142,7 +144,8 @@ public:
                 temp = temp->getSiguiente();
                 recorrido++;
             }
-        }}
+        }
+                                         }
     void OrdenarLDE_A_Z(){
         Nodo *aux1,*aux2;
         aux1=this->primero;
@@ -160,9 +163,49 @@ public:
             aux1=aux1->getSiguiente();
         }
     }
-    QString graficar(){
+
+    void OrdenarLDE_MA_ME(){
+        Nodo *aux1,*aux2;
+        aux1=this->primero;
+        Artist *temporal;
+        while (aux1->getSiguiente()!=0) {
+            aux2=aux1->getSiguiente();
+            while (aux2!=0) {
+                if(aux2->getDato()->getRating() > aux1->getDato()->getRating()){
+                    temporal = aux1->getDato();
+                    aux1->setDato(aux2->getDato());
+                    aux2->setDato(temporal);
+                }
+                aux2=aux2->getSiguiente();
+            }
+            aux1=aux1->getSiguiente();
+        }
+    }
+
+
+    QString graficarRating(){
         QString codigoG="";
         codigoG += "digraph Pila { \n   node [shape = record]\n graph [nodesep = 1]";
+        Nodo *n = this->primero;
+        codigoG += " \" " +n->getDato()->getName()+" \" ";
+        n=n->getSiguiente();
+        try {
+            for(int i=0;i<5;i++){
+                codigoG+=" -> \" " +n->getDato()->getName()+" \" " ;
+                n=n->getSiguiente();
+            }
+        } catch(int i) {
+            qDebug()<<"F F F"<<i;
+        }
+
+        codigoG+="}";
+        return  codigoG;
+    }
+
+
+    QString graficar(){
+        QString codigoG="";
+        codigoG += "digraph LDA { \n   node [shape = record]\n graph [nodesep = 1]";
         Nodo *n = this->primero;
         codigoG += " \" " +n->getDato()->getName()+" \" ";
         n=n->getSiguiente();
@@ -170,21 +213,22 @@ public:
             codigoG+=" -> \" " +n->getDato()->getName()+" \" " ;
             n=n->getSiguiente();
         }
+        codigoG+="[dir=both];";
         codigoG+="}";
         return  codigoG;
     }
     void generarTxt(QString txt){
         ofstream suffle;
-        suffle.open("C:/Users/Christian/Documents/Proyecto1/EDD_Proyecto1_201800580/suffle.txt",ios::out);
+        suffle.open("C:/Users/Christian/Documents/Proyecto1/EDD_Proyecto1_201800580/LDA.txt",ios::out);
         suffle<<txt.toStdString();
         suffle.close();
         system("cd C:/Users/Christian/Documents/Proyecto1/EDD_Proyecto1_201800580/");
         //string cmd= "dot -Tpng C:/Users/Christian/Documents/Proyecto1/EDD_Proyecto1_201800580/cube.txt -o C:/Users/Christian/Documents/Proyecto1/EDD_Proyecto1_201800580/cube.png";
         //system(cmd.c_str());
         //system("start C:/Users/Christian/Documents/Proyecto1/EDD_Proyecto1_201800580/cube.png");
-        string cmd= "dot -Tpdf C:/Users/Christian/Documents/Proyecto1/EDD_Proyecto1_201800580/suffle.txt -o C:/Users/Christian/Documents/Proyecto1/EDD_Proyecto1_201800580/suffle.pdf";
+        string cmd= "dot -Tpdf C:/Users/Christian/Documents/Proyecto1/EDD_Proyecto1_201800580/LDA.txt -o C:/Users/Christian/Documents/Proyecto1/EDD_Proyecto1_201800580/LDA.pdf";
         system(cmd.c_str());
-        system("start C:/Users/Christian/Documents/Proyecto1/EDD_Proyecto1_201800580/suffle.pdf");
+        system("start C:/Users/Christian/Documents/Proyecto1/EDD_Proyecto1_201800580/LDA.pdf");
     }
 
 

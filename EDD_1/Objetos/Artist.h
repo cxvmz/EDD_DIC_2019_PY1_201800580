@@ -3,6 +3,7 @@
 #include<iostream>
 #include <QString>
 #include "EDD_1/CuboD.h"
+#include "EDD_1/LS.h"
 
 class Artist{
 public:
@@ -20,12 +21,13 @@ public:
     void setAlbums(const CuboDisperso &value){albums = value;}
 
 
+
 private:
     QString name;
     CuboDisperso albums;
     double rating;
+
 };
 
 
 #endif // ARTIST_H
-

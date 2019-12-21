@@ -74,6 +74,24 @@ public:
         return 0;
     }
 
+    Nodo *buscarElemento(int x,int y){
+        Nodo *temp = root;
+        while (temp!=0) {
+            Nodo *aux = temp;
+            if(temp->getAlbum()->getYear() == x){
+
+                while (temp!=0) {
+                    if(temp->getAlbum()->getMonthNumero()==y){
+                        return temp;
+                    }
+                    temp= temp->getAbajo();
+                }
+            }
+            temp=aux;
+            temp= temp->getDerecha();
+        }
+    }
+
     void Insertar(int x,int y,Album *album){
 
         Nodo *nuevo = new Nodo(album);
@@ -246,6 +264,14 @@ public:
         Nodo *aux = root;
         while (aux!=0) {
             qDebug()<<"Mes  "<<aux->getAlbum()->getMonth();
+            aux= aux->getAbajo();
+        }
+    }
+    void imprimirElementos(){
+        Nodo *aux = root;
+        if(aux->getAlbum()->getYear()!=0 && aux->getAlbum()->getMonth()!="")
+        while (aux!=0) {
+            qDebug()<<aux->getAlbum()->getMonth();
             aux= aux->getAbajo();
         }
     }

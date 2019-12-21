@@ -7,6 +7,7 @@
 #include "EDD_1/Objetos/Artist.h"
 #include "EDD_1/Objetos/Album.h"
 #include "EDD_1/Objetos/Song.h"
+#include "EDD_1/Objetos/Playlist.h"
 #include "EDD_1/Objetos/ShuffleABB.h"
 #include "EDD_1/Objetos/CircularABB.h"
 #include <QFile>
@@ -17,6 +18,7 @@
 #include <QJsonArray>
 #include <fstream>
 #include <qdebug.h>
+
 
 
 int MesEnInt(QString mes)
@@ -67,7 +69,7 @@ int MesEnInt(QString mes)
 
 
 
-void AbrirArchivoLibraryJson(QString filen, ListaDoblementeEnlazada listaDeArtistas){
+ListaDoblementeEnlazada AbrirArchivoLibraryJson(QString filen){
     QFile file;
     QStringList nombre;
     QStringList nombreAlbum;
@@ -81,6 +83,7 @@ void AbrirArchivoLibraryJson(QString filen, ListaDoblementeEnlazada listaDeArtis
     file.open(QIODevice::ReadOnly|QIODevice::Text);
     val=file.readAll();
     file.close();
+    ListaDoblementeEnlazada listaDeArtistas;
     double ratingAlb =0;
     int iteracionesAlb=0;
     double ratingArt =0;
@@ -129,6 +132,7 @@ void AbrirArchivoLibraryJson(QString filen, ListaDoblementeEnlazada listaDeArtis
             alb.setCanciones(listaCanciones);
             //alb.getCanciones()->imprimirLS();
             Album *albMatriz = new Album(obj1["Name"].toString(),obj1["Month"].toString(),obj1["Year"].toString().toInt());
+            albMatriz->setCanciones(listaCanciones);
             int x = obj1["Year"].toString().toInt();
             int y = MesEnInt(obj1["Month"].toString());
             cuboDeAlbumes.Insertar(x,y,albMatriz);
@@ -139,20 +143,20 @@ void AbrirArchivoLibraryJson(QString filen, ListaDoblementeEnlazada listaDeArtis
         //qDebug()<<art.getName()+"  "+QString::number(art.getRating());
         //cuboDeAlbumes.ImprimirColumas();
         //cuboDeAlbumes.ImprimirFilas();
-        cuboDeAlbumes.generarTxT(cuboDeAlbumes.graficar()) ;
+        //cuboDeAlbumes.generarTxT(cuboDeAlbumes.graficar()) ;
     }
-    listaDeArtistas.imprimirLDE();
-    qDebug()<<"\n\n\n\n";
-    qDebug()<<"Odenada xd";
-    listaDeArtistas.OrdenarLDE_A_Z();
-    listaDeArtistas.imprimirLDE();
-     qDebug()<<"\n\n\n\n";
 
+    //listaDeArtistas.imprimirLDE();
+    //qDebug()<<"\n\n\n\n";
+    //qDebug()<<"Odenada xd";
+    listaDeArtistas.OrdenarLDE_A_Z();
+    //listaDeArtistas.imprimirLDE();
+     //qDebug()<<"\n\n\n\n";
+    return listaDeArtistas;
 }
 
 
-
-void AbrirArchivoPlaylistJson(QString filen){
+Playlist *AbrirArchivoPlaylistJson(QString filen){
     QFile file;
     QStringList anio;
     QString tipo;
@@ -171,10 +175,9 @@ void AbrirArchivoPlaylistJson(QString filen){
     tipo.append(jsonObject["Type"].toString());
     //Remover para obtener nombre de la playlist
     QString namePL = filen.remove(QString(".json"), Qt::CaseSensitivity());
-    //F
-
+    Playlist *play = new Playlist(namePL,jsonObject["Type"].toString());
     if(jsonObject.value(QStringLiteral("Type")).toString()=="Stack"){
-        PilaABB stack;
+        PilaABB *stack = new PilaABB();
         QJsonArray asd = jsonObject["Songs"].toArray();
         foreach (const QJsonValue & value, asd) {
             QJsonObject obj = value.toObject();
@@ -184,12 +187,13 @@ void AbrirArchivoPlaylistJson(QString filen){
             song.append(obj["Song"].toString());
             artist.append(obj["Artist"].toString());
             SongPL *ns= new SongPL(obj.value(QStringLiteral("Year")).toString().toInt(),obj.value(QStringLiteral("Month")).toString(),obj.value(QStringLiteral("Album")).toString(),obj.value(QStringLiteral("Song")).toString(),obj.value(QStringLiteral("Artist")).toString());
-            stack.push(ns);
+            stack->push(ns);
         }
-        stack.ReproducirPila();
+        play->setPila(stack);
+        //stack.ReproducirPila();
     }
     else if(jsonObject.value(QStringLiteral("Type")).toString()=="Queue"){
-        ColaABB Queue;
+        ColaABB *Queue= new ColaABB();
         QJsonArray asd = jsonObject["Songs"].toArray();
         foreach (const QJsonValue & value, asd) {
             QJsonObject obj = value.toObject();
@@ -199,12 +203,13 @@ void AbrirArchivoPlaylistJson(QString filen){
             song.append(obj["Song"].toString());
             artist.append(obj["Artist"].toString());
             SongPL *ns= new SongPL(obj.value(QStringLiteral("Year")).toString().toInt(),obj.value(QStringLiteral("Month")).toString(),obj.value(QStringLiteral("Album")).toString(),obj.value(QStringLiteral("Song")).toString(),obj.value(QStringLiteral("Artist")).toString());
-            Queue.encolar(ns);
+            Queue->encolar(ns);
         }
-        Queue.ReproducirCola();
+        play->setCola(Queue);
+        //Queue.ReproducirCola();
     }
     else if(jsonObject.value(QStringLiteral("Type")).toString()=="Shuffle"){
-        SuffleABB suffle;
+        SuffleABB *suffle = new SuffleABB();
         QJsonArray asd = jsonObject["Songs"].toArray();
         foreach (const QJsonValue & value, asd) {
             int desicion = rand()%2;
@@ -216,17 +221,17 @@ void AbrirArchivoPlaylistJson(QString filen){
             artist.append(obj["Artist"].toString());
             SongPL *ns= new SongPL(obj.value(QStringLiteral("Year")).toString().toInt(),obj.value(QStringLiteral("Month")).toString(),obj.value(QStringLiteral("Album")).toString(),obj.value(QStringLiteral("Song")).toString(),obj.value(QStringLiteral("Artist")).toString());
             if(desicion==1){
-                suffle.agregar_primero(ns);
+                suffle->agregar_primero(ns);
             }else if(desicion==0){
-                suffle.agregar_ultimo(ns);
+                suffle->agregar_ultimo(ns);
             }
         }
         //suffle.imprimirSuffleABB();
-        suffle.ReproducirShuffle("S");
-
+        //suffle.ReproducirShuffle("S");
+        play->setShuffle(suffle);
     }
     else if(jsonObject.value(QStringLiteral("Type")).toString()=="Circular"){
-        CircularABB circular;
+        CircularABB *circular=new CircularABB();
         QJsonArray asd = jsonObject["Songs"].toArray();
         foreach (const QJsonValue & value, asd) {
             QJsonObject obj = value.toObject();
@@ -236,22 +241,82 @@ void AbrirArchivoPlaylistJson(QString filen){
             song.append(obj["Song"].toString());
             artist.append(obj["Artist"].toString());
             SongPL *ns= new SongPL(obj.value(QStringLiteral("Year")).toString().toInt(),obj.value(QStringLiteral("Month")).toString(),obj.value(QStringLiteral("Album")).toString(),obj.value(QStringLiteral("Song")).toString(),obj.value(QStringLiteral("Artist")).toString());
-            circular.agregar_ultimo(ns);
+            circular->agregar_ultimo(ns);
         }
+        play->setCircular(circular);
         //circular.imprimirCiccukarABB();
         //circular.generarTxt(circular.graficar("A"));
     }
+    return play;
 }
-
 
 int main(int argc, char *argv[])
 {
     ListaDoblementeEnlazada listaDeArtistas;
     QCoreApplication a(argc, argv);
+    while (true) {
+        qDebug()<<"1. Ingresar Archivo Library";
+        qDebug()<<"2. Artist Report";
+        qDebug()<<"3. Elegir Artista";
+        qDebug()<<"4. Top 5 Artista";
+        string o1;
+        cin>>o1;
+        if(o1=="1")
+        {
+            string rutaLibrry;
+            qDebug()<<"Inserte Ruta";
+            cin>>rutaLibrry;
+            QString qstr = QString::fromStdString(rutaLibrry);
+            try {
+                listaDeArtistas = AbrirArchivoLibraryJson(qstr);
+                qDebug()<<"Abierto Correctamente";
+                o1="";
+            } catch(int i) {
+                qDebug()<<"F F F"<<i;
+            }
+
+        }else if(o1=="2")
+        {
+            listaDeArtistas.generarTxt(listaDeArtistas.graficar());
+            o1="";
+        }else if(o1=="3"){
+            listaDeArtistas.imprimirLDE();
+            int o2;
+            qDebug()<<"Eliger Artista";
+            cin>>o2;
+            Artist mArt=listaDeArtistas.obtener_Elemento_En(o2);
+            mArt.getAlbums().generarTxT(mArt.getAlbums().graficar());
+            qDebug()<<"Ingrese año y mes";
+            int x,y;
+            cin>>x>>y;
+            Album *f= mArt.getAlbums().buscarElemento(x,y)->getAlbum();
+            f->getCanciones()->imprimirLS();
+            f->getCanciones()->generarTxt(f->getCanciones()->graficar());
+            qDebug()<<"Eliger Cacnion a reproducir";
+            int fcan;
+            cin>>fcan;
+            f->getCanciones()->elementat(fcan);
+        }else if(o1=="4"){
+            ListaDoblementeEnlazada f1 = listaDeArtistas;
+            f1.OrdenarLDE_MA_ME();
+            f1.generarTxt(f1.graficarRating());
+        }
+
+    }
+
+
+
     //AbrirArchivoLibraryJson("Library_test.json",listaDeArtistas;);
     //AbrirArchivoLibraryJson("Library.json",listaDeArtistas);
 
-    AbrirArchivoPlaylistJson("Playlist_Rock.json");
+
+
+
+
+
+
+
+    //AbrirArchivoPlaylistJson("Playlist_Rock.json");
     //qDebug()<<"F";
     return a.exec();
 /*
