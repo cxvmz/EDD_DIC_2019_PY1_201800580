@@ -11,6 +11,7 @@
 #include "EDD_1/Objetos/ShuffleABB.h"
 #include "EDD_1/Objetos/CircularABB.h"
 #include <QFile>
+#include "EDD_1/Objetos/ABB.h"
 #include"EDD_1/Objetos/SongsPL.h"
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -190,7 +191,7 @@ Playlist *AbrirArchivoPlaylistJson(QString filen){
             stack->push(ns);
         }
         play->setPila(stack);
-        //stack.ReproducirPila();
+        stack.ReproducirPila();
     }
     else if(jsonObject.value(QStringLiteral("Type")).toString()=="Queue"){
         ColaABB *Queue= new ColaABB();
@@ -206,7 +207,7 @@ Playlist *AbrirArchivoPlaylistJson(QString filen){
             Queue->encolar(ns);
         }
         play->setCola(Queue);
-        //Queue.ReproducirCola();
+        Queue.ReproducirCola();
     }
     else if(jsonObject.value(QStringLiteral("Type")).toString()=="Shuffle"){
         SuffleABB *suffle = new SuffleABB();
@@ -226,8 +227,8 @@ Playlist *AbrirArchivoPlaylistJson(QString filen){
                 suffle->agregar_ultimo(ns);
             }
         }
-        //suffle.imprimirSuffleABB();
-        //suffle.ReproducirShuffle("S");
+        suffle->imprimirSuffleABB();
+        suffle->ReproducirShuffle("S");
         play->setShuffle(suffle);
     }
     else if(jsonObject.value(QStringLiteral("Type")).toString()=="Circular"){
@@ -244,8 +245,8 @@ Playlist *AbrirArchivoPlaylistJson(QString filen){
             circular->agregar_ultimo(ns);
         }
         play->setCircular(circular);
-        //circular.imprimirCiccukarABB();
-        //circular.generarTxt(circular.graficar("A"));
+        circular->imprimirCiccukarABB();
+        circular->generarTxt(circular->graficar("A"));
     }
     return play;
 }
@@ -253,12 +254,14 @@ Playlist *AbrirArchivoPlaylistJson(QString filen){
 int main(int argc, char *argv[])
 {
     ListaDoblementeEnlazada listaDeArtistas;
+    ABB abb;
     QCoreApplication a(argc, argv);
     while (true) {
         qDebug()<<"1. Ingresar Archivo Library";
         qDebug()<<"2. Artist Report";
         qDebug()<<"3. Elegir Artista";
         qDebug()<<"4. Top 5 Artista";
+        qDebug()<<"5. Ingresar Archivo Playlist";
         string o1;
         cin>>o1;
         if(o1=="1")
@@ -301,6 +304,20 @@ int main(int argc, char *argv[])
             f1.OrdenarLDE_MA_ME();
             f1.generarTxt(f1.graficarRating());
         }
+        else if(o1=="5"){
+            string rutaLibrry;
+            qDebug()<<"Inserte Ruta";
+            cin>>rutaLibrry;
+            QString qstr = QString::fromStdString(rutaLibrry);
+            try {
+                Playlist *pls = AbrirArchivoPlaylistJson(qstr);
+                abb.agregar(pls);
+                qDebug()<<"Abierto Correctamente";
+                o1="";
+            } catch(int i) {
+                qDebug()<<"F F F"<<i;
+            }
+                }
 
     }
 
